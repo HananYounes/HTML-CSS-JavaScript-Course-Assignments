@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Matching Game</title>
+	<meta name="author"  content="student">
+	<style type="text/css">
+		img {position: absolute;}
+		div {
+			    width:500px;
+			    height:500px;
+			    position:absolute;
+			}
+		#rightSide { left: 500px; border-left: 1px solid black }
+	</style>
+
+</head>
+
+<body onload="generateFaces()">
+
+ <!-- 1. A title-->
+ <h1>Matching Game</h1>
+
+ <!-- 2. A message containing the instructions -->
+<p>Click on the extra smiling face on the left.</p>
+
+<!-- 3. Two Divs to handle left and right sides-->
+<div id="leftSide"></div> 
+<div id="rightSide"></div> 
+
+<script type="text/javascript">
+		// variables
+		var width = 400;
+		var height = 400;
+		var height_of_image = 100;
+		var numberOfFaces=5;
+		var theLeftSide = document.getElementById("leftSide");
+		var theRightSide = document.getElementById("rightSide");
+		
+
+
+		// function to create the faces
+		function generateFaces() {
+
+		// loop executes numberOfFaces times. In each iteration it creates a smiley face
+		for (var i = 0; i < numberOfFaces; i++){
+
+			//The img top value is set to be a random value in an appropriate range
+			var top_position = Math.random() * height
+			top_position = Math.floor(top_position);
+
+			// The img left value is set to be a random value in an appropriate range
+			var left_position = Math.random() * width;
+			left_position = Math.floor(left_position);
+
+			// creating a smiley image  
+			var x=document.createElement("img");
+			x.setAttribute("src", 'http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png');
+			// setting the position of each image created
+		    x.style.top = top_position + "px";
+		    x.style.left = left_position + "px";
+		    x.style.height = height_of_image + "px";
+		    x.style.width = height_of_image + "px";
+			theLeftSide.appendChild(x);
+
+			//A new variable is created that points to the right side div
+			
+			var leftSideImages = theLeftSide.cloneNode(true);
+			
+			// remove the last child 
+			leftSideImages.removeChild(leftSideImages.lastChild);
+			theRightSide.appendChild(leftSideImages);
+
+		}; 
+
+
+		
+};
+
+			
+
+</script>
+
+</body>
+</html>
